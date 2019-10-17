@@ -175,6 +175,14 @@ class Course extends Component {
           }
         }
 
+        //var room_url = "https://room.maodouapis.com/room?ticAppId=1400239086&username=liming&userId=5d03518eb902b2001146ad04&roomId=000009598&role=student&teacherId=5cff11f5d41d330011bb946a"
+
+        var userId = this.props.userData.info.firstName
+        var username = this.props.userData.info.firstName
+
+        var room_url = "https://room.maodouapis.com/room?ticAppId=1400239086&username=" +
+        username + "&userId=" + userId + "&roomId=000009598&role=student"
+
         return (
           <tr key={item}>
             <td>{subject.code}</td>
@@ -184,6 +192,7 @@ class Course extends Component {
             <td>{teachers}</td>
             <td>{subject.credits}</td>
             <td>{itemEnrol}</td>
+            <td><a href={room_url} target='_blank'>{this.props.userData.info.firstName} Join Class</a></td>
           </tr>
         );
       });
@@ -296,6 +305,7 @@ class Course extends Component {
                       {isLoaded(this.props.userData) && !isEmpty(this.props.userData)
                         ? <th>Availability</th>
                         : null}
+                       <th>ClassRoom</th>
                     </tr>
                   </thead>
                   <tbody>
